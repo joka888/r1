@@ -14,7 +14,7 @@
 
   <script>
   
-  var button = document.getElementById('button');
+  var searchBtn = document.getElementById('searchBtn');
 
   var searchText = function() {
 
@@ -22,14 +22,35 @@
     var text = document.getElementsByClassName('tresc')[0].innerHTML;
     var info = document.getElementById('info');
 
-    for (var i = 0; i <= textToSearch.length; i++) {
-      if (text[i] === textToSearch[i]) {
-        info.innerHTML += textToSearch[i];
-      } 
-    };
+    var tmpInfo = '';
+
+    for (var j = 0; j < textToSearch.length; j++) {
+      for (var i = 0; i < text.length; i++) {
+      console.log(
+        'przebieg pętli i:', i,
+        'znaki do porównania:', textToSearch[j], text[i],
+        'porównanie',  textToSearch[j] === text[i],
+      )
+
+      if (text[i] === textToSearch[j]) {
+        console.log(i, 'zgadza się',)
+        tmpInfo += textToSearch[j] 
+        break;
+        } else if (false){
+            console.log(i, 'nie zgadza się',)
+        }
+      }
+    }
+
+
+    if (tmpInfo === textToSearch) {
+      info.innerHTML = tmpInfo;
+    } else {
+      info.innerHTML = "Brak dopasowań.";
+    }
   };
 
-  button.addEventListener('click',searchText);
+searchBtn.addEventListener('click',searchText);
   
   </script>
 </body>
